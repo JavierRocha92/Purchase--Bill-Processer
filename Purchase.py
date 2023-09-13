@@ -1,3 +1,5 @@
+#Importyamos el atributo attrgettter de la libreria operator
+from operator import attrgetter
 #Creamos una clase de compras para almacenar los productos realizados en una misma
 # compra por grupos y poder operar con ellos
 
@@ -11,15 +13,14 @@ class Purchase(object):
         
     def findExpensive(self):
         """ Este metodo develve el producto que mas cuesta en su precio por unidad """
-        #Ordenamos la lista de productos segun el parametro de ud_price
-        sorted(self.products, key= lambda products : self.products.ud_price)
-        return self.products[0]
+        #Sacamos el producto con mayor precio pasandole como patametro key ud_price
+        pass
     
     def findMostSpend(self):
-        """ Este metodo devuelve el producto en el que mas inero se ha gastado en la compra """
-        #Ordenamos la lista de productos segun el parametro de ud_price
-        sorted(self.products, key= lambda products : self.products.price)
-        return self.products[0]
+        """ Este metodo devuelve el producto en el que mas dinero se ha gastado en la compra """
+        #Sacamos el producto con mayor precio pasandole como patametro key price
+        expensive = max(self.products,key = attrgetter('price'))
+        return expensive
         
     def addProduct(self,p):
         """ Agrega al objeto Purchase un nuevo Product """

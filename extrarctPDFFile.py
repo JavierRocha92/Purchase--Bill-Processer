@@ -54,7 +54,6 @@ for line in lines[7:]:
                 collect=False
             else:
                 product = proc.processText(pr)
-                #Este condicional nos va a decir si el producto tiene un o mas unidades de compra
                 if product[0] == '1':
                 #Creamos un objeto de la clase Product
                     p = Product(ud = product[0], name = product[1], price = product[2])
@@ -77,5 +76,8 @@ print(len(purchase.products))
 for product in purchase.products:
     print(product)
 print(purchase)
+
+#Llamo a metodo pata emcontrar el productp mas caro
+print('Producto mas caro',purchase.findMostSpend())
 
 
