@@ -6,7 +6,7 @@ import processor as proc
 import extractor as ext
     
 #Genramos un aruta para tener nuestro fichero
-path = os.getcwd()+'\\files\\fichero2.pdf'
+path = os.getcwd()+'\\files\\fichero4.pdf'
 
 #Lalammaos a metodo para leer el fichero pdf que le mandamos como parametro(ruta)
 # y nos devulve el texto de dicho fichero
@@ -40,7 +40,7 @@ for line in lines[7:]:
         #Usamos un condicional para saber si el producto que estamos leyendo tiene uno o mas parametros
         #para saber si estamos procesando un producto con peso o no
         if  len(pr) > 1: 
-            #Llamamos al metodo para obtener la inea de datos procesada segun sus campos
+            #Llamamos al metodo para obtener la linea de datos procesada segun sus campos
             product = proc.processLine(precio,pr)
             #Evaluamos si la condicion de fruta esta en True para poder unir la informacion de la fruta
             # con la inea actual que se esta procesando
@@ -54,12 +54,8 @@ for line in lines[7:]:
                 collect=False
             else:
                 product = proc.processText(pr)
-                if product[0] == '1':
                 #Creamos un objeto de la clase Product
-                    p = Product(ud = product[0], name = product[1], price = product[2])
-                else:
-                    p = Product(ud = product[0], name = product[1], ud_price = product[2], price = product[3])
-                #Llamamos a metodo para procesar los precio
+                p = Product(ud = product[0], name = product[1], ud_price = product[2], price = product[2])
                 purchase.products.append(p)            
                 
         else:
@@ -79,5 +75,7 @@ print(purchase)
 
 #Llamo a metodo pata emcontrar el productp mas caro
 print('Producto mas caro',purchase.findMostSpend())
+#Llamo a metodo pata emcontrar el productp mas caro segunn su unidades compradas
+print('Producto mas caro por unidad es: ',purchase.findExpensive())
 
 

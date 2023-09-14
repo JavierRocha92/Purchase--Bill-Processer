@@ -14,7 +14,8 @@ class Purchase(object):
     def findExpensive(self):
         """ Este metodo develve el producto que mas cuesta en su precio por unidad """
         #Sacamos el producto con mayor precio pasandole como patametro key ud_price
-        pass
+        expensive = max(self.products,key = attrgetter('ud_price'))
+        return expensive
     
     def findMostSpend(self):
         """ Este metodo devuelve el producto en el que mas dinero se ha gastado en la compra """
