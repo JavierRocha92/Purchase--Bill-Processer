@@ -1,11 +1,10 @@
-import PyPDF2 as pf
-
 #Metodo para processar la lista de strings de prodcuto
 def processText(p):
     p.insert(0,p[0][0])
     p[1] = p[1][1:]
     for i in range(0,len(p)):
         p[i] = p[i].replace(',','.')
+        p[i] = p[i].replace(' kg','')
     return p
 
 def processLine(precio,pr):
@@ -15,6 +14,8 @@ def processLine(precio,pr):
         if precio.search(pr[1]):
             if len(pr) == 2:
                 pr.insert(1,pr[1])
+            if len(pr) == 3:
+                pr.insert(1,' ')
             break
         else:
             pr[0] += ' '+pr[1]
