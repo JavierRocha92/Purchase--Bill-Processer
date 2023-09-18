@@ -24,8 +24,14 @@ def consulta (p):
 #Creamos una funcion para consultar los datos de una tabla
 def insertar (p):
     conexion, cursor = conectar()
-    statement =  '''
-        INSERT INTO purchase(codigo, nombre, peso, precio_ud, precio ) VALUES(?,?,?,?,?)'''
+    #Para insertar un registro
+    if len(p) == 6:
+        statement =  '''
+            INSERT INTO articles(code, uds, name, weight, ud_price, price ) VALUES(?,?,?,?,?,?)'''
+    #Para insertar una compra
+    else : 
+        statement =  '''
+            INSERT INTO purchase(date, hour, code) VALUES(?,?,?)'''
     if (cursor.execute(statement,p)):
         print('la inserccion de ha realizado correctamente')
     else:

@@ -15,7 +15,7 @@ def extractDataPurchase(lines):
     #Vamos a quedarnos solo con la linea donde aparece el codigo de la compra, y realizamos un split para quedarnos con la fecha y el codigo de compra
     dates = lines[4].split()
     
-    return proc.processDate(dates[0]),dates[3]
+    return proc.processDate(dates[0]),dates[1],dates[3]
     
     
 

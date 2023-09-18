@@ -17,19 +17,21 @@ def createTable(statement):
     
     
 statementArt = '''CREATE TABLE IF NOT EXISTS articles (
-                code PRIMARY KEY NOT NULL,
+                code NOT NULL,
                 uds INTEGER NOT NULL,
                 name VARCHAR(20) NOT NULL,
                 weight FLOAT(2,2) NOT NULL,
                 ud_price FLOAT(2,2) NOT NULL,
-                price FLOAT(2,2) NOT NULL
+                price FLOAT(2,2) NOT NULL,
+                PRIMARY KEY (code, name),
+                FOREIGN KEY (code) REFERENCES purchase(code)
                     )'''
                     
 statementPur =  '''CREATE TABLE IF NOT EXISTS purchase (
                 code INTEGER PRIMARY KEY NOT NULL,
                 date VARCHAR(10) NOT NULL,
                 hour VARCHAR(10) NOT NULL,
-                price FLOAT(2,2) NOT NULL
+                price FLOAT(2,2)
                    )'''
     
     

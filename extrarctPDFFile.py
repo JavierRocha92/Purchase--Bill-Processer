@@ -17,9 +17,15 @@ lines = text.split('\n')
 
 #Llamamos al metodo para conseguir el codigo y la fecha de la compra
 
-date, code = ext.extractDataPurchase(lines)
+purchase = ext.extractDataPurchase(lines)
+
+#Guardamos el valor del codigo de ls compra para poder usarlo con los articulos
+
+code = purchase[2]
 
 #Ahora lo insertamos a la base de datos en la tabla de las compras
+
+bd.insertar(purchase)
 
 #Esta expresion regular nos incidica el final d la busqueda, ya que no empieza por un numero,
 #la fila que queremos dejar de leer
@@ -60,8 +66,8 @@ for line in lines[7:]:
                 
             #hacemos este pop para borrar el €/kg de cada producto
                 product.pop(4)
-                """ bd.insertar(fruit) """
-                print(product)
+                bd.insertar(fruit)
+                """ print(product) """
             #Ponemos la variable collect a False
                 collect=False
             else:
@@ -70,8 +76,8 @@ for line in lines[7:]:
                 #añadimos el codigo de compra a el articulo
             
                 product.insert(0,code)
-                print(pr)
-                """ bd.insertar(pr) """
+                """ print(pr) """
+                bd.insertar(pr)
         else:
             #Si la longitud del producto es de 1 esto indca que es una fruta, debemos de dejar gaurdada
             # la informaicon de esta para unirla con sus datos ya que aparaeceran en la siguiente linea
@@ -79,7 +85,7 @@ for line in lines[7:]:
             fruit = pr
     else:
         break
-
+#Llamo a metodo para insertar el valor total de la compra una vez he insertado todos los productos
 #Cragamos el valor total de la compra llamansdo al metodo
 """ purchase.total_price = purchase.setTotalPrice()
 print(len(purchase.products))
