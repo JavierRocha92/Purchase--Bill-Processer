@@ -20,22 +20,31 @@ def consulta (p):
     cursor.close()
     conexion.commit()
     conexion.close()
+
     
 #Creamos una funcion para consultar los datos de una tabla
 def insertar (p):
     conexion, cursor = conectar()
-    #Para insertar un registro
-    if len(p) == 6:
+    #Comprobamos si el primer elemento de lal lista qye nos pasan por parametro es una lista para insertar los articulos
+    # y si no sera un string y en dicho caso insertaremos una compra
+    if(isinstance(p[0],list)):
+    #Para insertar un articulo
         statement =  '''
-            INSERT INTO articles(code, uds, name, weight, ud_price, price ) VALUES(?,?,?,?,?,?)'''
-    #Para insertar una compra
-    else : 
-        statement =  '''
-            INSERT INTO purchase(date, hour, code) VALUES(?,?,?)'''
-    if (cursor.execute(statement,p)):
-        print('la inserccion de ha realizado correctamente')
+            INSERT INTO articles(code, uds, name, weight, ud_price, price) VALUES(?,?,?,?,?,?)'''
+        if (cursor.executemany(statement,p)):
+            print('la inserccion de ha realizado correctamente')
+        else:
+            print('Ha ocurrido algun error')
     else:
-        print('Ha ocurrido algun error')
+        #para insertar una compra
+        statement =  '''
+            INSERT INTO purchase(date,hour,code,price) VALUES(?,?,?,?)'''
+        
+        if (cursor.execute(statement,p)):
+            print('la inserccion de ha realizado correctamente')
+        else:
+            print('Ha ocurrido algun error')
+            
     cursor.close()
     conexion.commit()
     conexion.close()
