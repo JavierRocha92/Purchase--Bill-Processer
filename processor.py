@@ -15,7 +15,7 @@ def processLine(precio,pr,weight):
     #uniendolos segun el patron  para dejar solo los campos necesarios
     while (True):
         if weight == False:
-            #buscamos si la segunds posicion de la lista contiene un precio
+            #buscamos si la segunda posicion de la lista contiene un precio
             if precio.search(pr[1]):
                 #Si la lomgitud de la lista es de dos entonces
                 if len(pr) == 2:
@@ -31,9 +31,13 @@ def processLine(precio,pr,weight):
                 pr[0] += ' '+pr[1]
                 pr.pop(1)
         else :
+            """ EL ERROR ESTA AQUI YA QUE SI EL NOMBRE DE LS FRUTA ESTA COMPUESTO NOS VA A BORRAR LOS ELEMETNOS 
+            CORRIDOS UNA POSICION A LA DERECHA"""
+            
             #Si es una fruta lo que hacemos es borrar los datos que no nos sirvan para el procesamiento
-            pr.pop(2)
-            pr.pop(3)
+            
+            pr.pop(pr.index('€/kg'))
+            pr.pop(pr.index('kg'))
             weight = False
     return pr,weight
 

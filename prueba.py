@@ -35,7 +35,10 @@ statementPur =  '''CREATE TABLE IF NOT EXISTS purchase (
                    )'''
     
     
-createTable(statementArt)
-createTable(statementPur)
+""" createTable(statementArt)
+createTable(statementPur) """
 """ bd.findExpensive()
 bd.findMostExpensive() """
+
+statement = """SELECT date,p.code,count(*) numeroArticulos FROM articles a join purchase p on a.code = p.code GROUP BY p.code """
+bd.consulta(statement)

@@ -9,12 +9,12 @@ def conectar ():
     return conexion, cursor
 
 #Creamos una funcion para consultar los datos de una tabla
-def consulta (p):
+def consulta (statement):
     conexion, cursor = conectar()
-    statement =  '''
-        SELECT * FROM purchase(codigo, nombre, peso, precio_ud, precio ) VALUES(?,?,?,?,?)'''
+    
     if (cursor.execute(statement)):
-        print('la inserccion de ha realizado correctamente')
+        for e in cursor.fetchall():
+            print(e)
     else:
         print('Ha ocurrido algun error')
     cursor.close()

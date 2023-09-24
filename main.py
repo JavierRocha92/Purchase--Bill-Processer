@@ -6,7 +6,7 @@ import BBDD as bd
 #Al iniciar el programa cargamos un fichero con la factura 
 
 """ EN ESTE CASO EL FICHERO VIENE DADO POR UNA RUTA COMO PRUEBA """
-path = os.getcwd()+'\\files\\fichero4.pdf'
+path = os.getcwd()+'\\files\\fichero5.pdf'
 
 #Vamos a extraer de ese fichero los datos de la compra y realizamos su insercion en la base de datos
 
@@ -24,6 +24,8 @@ purchase = list(ext.extractDataPurchase(lines))
 """ AHORA LLAMAMOS AL METODO PARA EXTRAER LOS ARTICULOS PASANDOLE COMO PARAMETRO LA LISTA CREADA ANTERIORMENTE lines
 Y GENERAMOS UNA LISTA DE ARTICULOS CON EL METODO extractArticles() PASANDOLE COMO PARAMETRO TAMBIEN EL CODIGO DE COMPRA"""
 articles = ext.extractArticles(lines,purchase[2])
+for e in ext.extractArticles(lines,purchase[2]):
+    print(e)
 """GUARDAMOS EL TOTAL DE LA COMPRA EL LA VARIABLE PURCHASE"""
 purchase.append(ext.extractPrice(articles))
 """REALIZAMOS LA INSEERCCION A LA BASE DE DATOS DE LA COMPRA Y DE LOS ARTICULOS"""
@@ -31,4 +33,6 @@ bd.insertar(purchase)
 bd.insertar(articles)
 
 
+"""FALLO DE REPETICION DE NOMBRE DE ARTICULO EN LA MISMA COMPRA SE DEBE BORRAR LAS CONCURRENCIAS
+PERO SUMAR LOS PRECIOS Y LOS PESOS Y INCREMENTAR SUS UNIDADES"""
 #Sacar el menu para que el ususario eliga la opcion que quiera consultar
