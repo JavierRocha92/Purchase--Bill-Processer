@@ -12,11 +12,15 @@ def extractTextPDF(path):
     #creamos una variable text para guatrdar el texto
     return page_obj.extract_text()
 
+# metodo para procesar la fecha que extraemos del pdf para realizar una inserccion
+
 def extractDataPurchase(lines):
     #Vamos a quedarnos solo con la linea donde aparece el codigo de la compra, y realizamos un split para quedarnos con la fecha y el codigo de compra
     dates = lines[4].split()
+    # Vamos a guardar la fecha de la compra en formato iso con lo cual llamamos a metodo para procesarla
     
-    return proc.processDate(dates[0]),dates[1],dates[3]
+    return proc.processDateInsert(dates[0],dates[1]),dates[3]
+
     
 #Metodo para extraeer los articulos de el texto dado como parametro
 
@@ -36,7 +40,7 @@ def extractArticles(lines,code):
     #Ahora vamos a leer solo la informacion de los productos, el inicio es la linea en la posicion 7
     #Creamos un bucle for desde la posicion 7 del texto hasta el final para encontrar la ultima linea,
     #usando la expresion regular y saliend del bucle con ella
-    for line in lines[47:]:
+    for line in lines[7:]:
         #Creamos un producto y le separamos por el split de espacios en blanco
         pr = line.split()
         #realizamos un if para con la regex creada anteiormente (start) podamos salir del bucle 
